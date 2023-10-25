@@ -1,35 +1,21 @@
 import java.util.Scanner;
 
 class Student {
-
-    String firstName, middleName, lastName, suffix, fullName;
-
-    public String getFirstName() {
-        return firstName;
-    }
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private String suffix;
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
     }
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getSuffix() {
-        return suffix;
     }
 
     public void setSuffix(String suffix) {
@@ -37,38 +23,41 @@ class Student {
     }
 
     public String getFullName() {
-        fullName = firstName + " " + (middleName != null ? middleName + " " : "") + lastName;
+        String fullName = firstName;
+
+        if (middleName != null && !middleName.isEmpty()) {
+            fullName += " " + middleName;
+        }
+
+        fullName += " " + lastName;
+
         if (suffix != null && !suffix.isEmpty()) {
             fullName += " " + suffix;
         }
+
         return fullName;
     }
 
-    public static void main(String a[]) {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
         Student student = new Student();
 
         System.out.print("Enter First Name: ");
-        String firstName = scanner.nextLine();
-        student.setFirstName(firstName);
+        student.setFirstName(scanner.nextLine());
 
         System.out.print("Enter Middle Name: ");
-        String middleName = scanner.nextLine();
-        student.setMiddleName(middleName);
+        student.setMiddleName(scanner.nextLine());
 
         System.out.print("Enter Last Name: ");
-        String lastName = scanner.nextLine();
-        student.setLastName(lastName);
+        student.setLastName(scanner.nextLine());
 
         System.out.print("Enter Suffix: ");
-        String suffix = scanner.nextLine();
-        student.setSuffix(suffix);
+        student.setSuffix(scanner.nextLine());
 
-        System.out.println("\nFirst Name: " + student.getFirstName());
-        System.out.println("Middle Name: " + student.getMiddleName());
-        System.out.println("Last Name: " + student.getLastName());
-        System.out.println("Suffix: " + student.getSuffix());
+        System.out.println("\nFirst Name: " + student.firstName);
+        System.out.println("Middle Name: " + student.middleName);
+        System.out.println("Last Name: " + student.lastName);
+        System.out.println("Suffix: " + student.suffix);
         System.out.println("Full Name: " + student.getFullName());
     }
 }
